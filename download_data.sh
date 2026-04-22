@@ -3,7 +3,7 @@
 #
 # Required files:
 #   - ratings.csv  (837 MB) - MovieLens 32M ratings
-#   - TMDB_all_movies.csv (694 MB) - TMDB movie metadata
+#   - TMDB_all_movies.csv (694 MB) - The Ultimate 1Million Movies Dataset (TMDB + IMDb)
 #   - tags.csv (70 MB) - MovieLens tags
 #   - links.csv (2 MB) - MovieLens links
 #   - movies.csv (4 MB) - MovieLens movies
@@ -62,12 +62,12 @@ if [ -f "$TMDB_FILE" ]; then
     echo "✓ TMDB_all_movies.csv already exists, skipping."
 else
     echo ""
-    echo "TMDB dataset download:"
-    echo "  https://www.kaggle.com/datasets/asaniczka/tmdb-movies-dataset-2023-10-04"
+    echo "TMDB dataset download (The Ultimate 1Million Movies Dataset):"
+    echo "  https://www.kaggle.com/datasets/alanvourch/tmdb-movies-daily-updates"
     echo ""
     if command -v kaggle &>/dev/null; then
         echo "Kaggle CLI detected, downloading..."
-        kaggle datasets download -d asaniczka/tmdb-movies-dataset-2023-10-04 -p /tmp/tmdb
+        kaggle datasets download -d alanvourch/tmdb-movies-daily-updates -p /tmp/tmdb
         unzip -o /tmp/tmdb/*.zip -d /tmp/tmdb
         cp /tmp/tmdb/TMDB_all_movies.csv "$TMDB_FILE"
         rm -rf /tmp/tmdb
