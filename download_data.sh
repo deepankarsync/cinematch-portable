@@ -31,8 +31,8 @@ if [ ${#ML_MISSING[@]} -eq 0 ]; then
     echo "✓ All MovieLens files already exist, skipping."
 else
     echo ""
-    echo "MovieLens 32M dataset requires manual download:"
-    echo "  https://grouplens.org/datasets/movielens/32m.html"
+    echo "Downloading MovieLens 32M dataset..."
+    echo "  https://files.grouplens.org/datasets/movielens/ml-32m.zip"
     echo ""
     echo "Steps:"
     echo "  1. Visit the URL above and download ml-32m.zip"
@@ -42,18 +42,15 @@ else
     done
     echo ""
 
-    if [ -n "${ML32M_URL:-}" ]; then
-        echo "Downloading from ML32M_URL..."
-        wget -O /tmp/ml-32m.zip "$ML32M_URL"
-        unzip -o /tmp/ml-32m.zip -d /tmp/ml-32m-extract
-        for f in "${ML_MISSING[@]}"; do
-            cp "/tmp/ml-32m-extract/ml-32m/${f}" "${SCRIPT_DIR}/${f}"
-            echo "  ✓ ${f}"
-        done
-        rm -rf /tmp/ml-32m.zip /tmp/ml-32m-extract
-    else
-        echo "⚠ Manual download required for: ${ML_MISSING[*]}"
-    fi
+    ML32M_URL="${ML32M_URL:-https://files.grouplens.org/datasets/movielens/ml-32m.zip}"
+    echo "Downloading from $ML32M_URL ..."
+    wget -O /tmp/ml-32m.zip "$ML32M_URL"
+    unzip -o /tmp/ml-32m.zip -d /tmp/ml-32m-extract
+    for f in "${ML_MISSING[@]}"; do
+        cp "/tmp/ml-32m-extract/ml-32m/${f}" "${SCRIPT_DIR}/${f}"
+        echo "  ✓ ${f}"
+    done
+    rm -rf /tmp/ml-32m.zip /tmp/ml-32m-extract
 fi
 
 # --- TMDB All Movies ---

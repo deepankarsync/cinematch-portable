@@ -31,9 +31,8 @@ chmod +x download_data.sh
 #### Manual Download (if script doesn't auto-download)
 
 **MovieLens 32M** (~1.6 GB zipped):
-1. Visit https://grouplens.org/datasets/movielens/32m.html
-2. Download `ml-32m.zip`
-3. Extract and copy these files to the project root:
+1. Download from https://files.grouplens.org/datasets/movielens/ml-32m.zip
+2. Extract and copy these files to the project root:
    - `ratings.csv` (837 MB) — 32M user-movie ratings
    - `movies.csv` (4 MB) — movie titles and genres
    - `links.csv` (2 MB) — MovieLens → TMDB/IMDb ID mapping
