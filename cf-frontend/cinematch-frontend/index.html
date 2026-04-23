@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch | AI Movie Recommendations</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <header class="app-header">
+        <div class="logo">
+            <i class="fa-solid fa-film"></i>
+            <h1>CineMatch</h1>
+        </div>
+        <p class="subtitle">Curate your taste. Discover your next favorite.</p>
+    </header>
+
+    <main class="app-container">
+        
+        <!-- Search Section -->
+        <section class="search-section panel">
+            <div class="search-header">
+                <h2>Search Movies</h2>
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Type a movie name..." autocomplete="off">
+                </div>
+            </div>
+            
+            <div class="scroll-area">
+                <div id="searchResults" class="movie-grid">
+                    <!-- Search results populated here -->
+                    <div class="empty-state">Search for movies you love to start building your taste profile.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Taste Profile Section -->
+        <section class="profile-section panel">
+            <div class="profile-header">
+                <h2>Your Taste Profile <span id="profileCount" class="badge">0</span></h2>
+                <button id="recommendBtn" class="btn-primary" disabled>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Get Recommendations
+                </button>
+            </div>
+            
+            <div class="scroll-area">
+                <div id="tasteProfile" class="movie-list">
+                    <!-- Selected movies populated here -->
+                    <div class="empty-state">Select movies from the search results to add them here.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Recommendations Overlay (Hidden by default) -->
+    <div id="recommendationsModal" class="modal hidden">
+        <div class="modal-content panel">
+            <button id="closeModalBtn" class="btn-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2>✨ Your AI Recommendations</h2>
+            <p class="modal-subtitle">Based on your unique taste profile, we think you'll love these.</p>
+            
+            <div id="loadingState" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>Analyzing billions of data points...</p>
+            </div>
+
+            <div class="scroll-area modal-scroll">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">✨ LLM Reranked Recommendations</h3>
+                <div id="llmGrid" class="movie-grid large-grid" style="margin-bottom: 2.5rem;"></div>
+                
+                <h3 style="margin-bottom: 1rem; color: var(--accent-color);">📊 Base Embedding Similarity</h3>
+                <div id="embeddingGrid" class="movie-grid large-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Key Config Overlay (Runs once) -->
+    <div id="configModal" class="modal">
+        <div class="modal-content panel config-panel">
+            <h2>⚙️ Setup TMDB API</h2>
+            <p>Please enter your TMDB API Read Access Token (v4) to continue.</p>
+            <input type="password" id="tmdbTokenInput" placeholder="eyJhbGciOiJIUzI1NiJ9...">
+            <button id="saveConfigBtn" class="btn-primary" style="margin-top: 15px; width: 100%;">Save Token</button>
+            <p class="small-text" style="margin-top: 10px; color: var(--text-muted); font-size: 0.85rem;">This token is only stored locally in your browser.</p>
+        </div>
+    </div>
+
+    <script src="app.js?v=5"></script>
+</body>
+</html>

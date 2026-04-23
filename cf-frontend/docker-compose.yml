@@ -1,0 +1,21 @@
+services:
+
+  # Single container — mirrors exactly what runs on Railway
+  cinematch:
+    build: .
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - LLM_BASE_URL=${LLM_BASE_URL:-https://integrate.api.nvidia.com/v1}
+      - LLM_MODEL=${LLM_MODEL:-meta/llama-3.1-70b-instruct}
+      - LLM_API_KEY=${LLM_API_KEY}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-1.0}
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-16384}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/docs')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
