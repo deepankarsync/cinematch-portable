@@ -9,3 +9,6 @@ results/*.pkl
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+cf-frontend/cache/description_embeddings.pkl
+cf-frontend/cache/movieid_list.pkl
+cf-frontend/cache/movieid_metadata_ultimate.pkl
