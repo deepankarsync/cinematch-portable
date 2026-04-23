@@ -16,7 +16,7 @@ from typing import List
 # ==========================================
 LLM_BASE_URL = os.getenv('LLM_BASE_URL', 'https://integrate.api.nvidia.com/v1')
 LLM_MODEL = os.getenv('LLM_MODEL', 'meta/llama-3.1-70b-instruct')
-LLM_API_KEY = os.getenv('LLM_API_KEY', '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') # Make sure to put your real key here!
+LLM_API_KEY = os.getenv('LLM_API_KEY', '') # Make sure to put your real key here!
 LLM_TEMPERATURE = float(os.getenv('LLM_TEMPERATURE', '1.0'))
 LLM_MAX_TOKENS = int(os.getenv('LLM_MAX_TOKENS', '16384'))
 TMDB_TOKEN = os.getenv('TMDB_TOKEN', '')
